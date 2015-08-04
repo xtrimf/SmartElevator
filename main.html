@@ -1,0 +1,27 @@
+<head>
+    <title>SmartElevator</title>
+</head>
+
+<body>
+<h1 align="center">Welcome to SmartElevator</h1>
+
+{{> register}}
+</body>
+
+
+<template name="register" >
+    <h2>Register</h2>
+    <form class="registerForm" >
+        <table align="center">
+            <tr><td>User: </td><td><input type="input" name="user"></td></tr>
+            <tr><td>Password: </td><td><input type="password" name="password"></td></tr>
+            <tr><td>ElevatorID </td><td><input type="input" name="ElevatorID"></td></tr>
+            <tr><td><input type="submit" value="Create User"></td></tr>
+        </table>
+    </form>
+</template>
+
+<template name="hello">
+    <button>Click Me</button>
+    <p>You've pressed the button {{counter}} times.</p>
+</template>
