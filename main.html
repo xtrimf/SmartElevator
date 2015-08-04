@@ -17,6 +17,7 @@
         <table align="center">
             <tr><td>User: </td><td><input type="input" name="user"></td></tr>
             <tr><td>Password: </td><td><input type="password" name="password"></td></tr>
+            <tr><td>Description: </td><td><input type="input" name="Desc"></td></tr>
             <tr><td>ElevatorID: </td><td><input type="input" name="ElevatorID"></td></tr>
             <tr><td colspan="2" align="center"><input type="submit" value="Create User"></td></tr>
         </table>
@@ -25,9 +26,14 @@
 
 <template name="userList">
     <table border="1" align="center">
-        <tr><th>User</th><th>ElevatorID</th><th></th></tr>
+        <tr><th>User</th><th>ElevatorID</th><th>Description</th><th></th></tr>
     {{#each users}}
-        <tr><td id="user"><h6>{{username}}</h6></td><td><h6>{{profile.elevatorID}}</h6></td><td><button id="deleteUser" class="btn btn-danger btn-xs" >Delete User</button></td></tr>
+        <tr><td id="user"><h6>{{username}}</h6></td>
+            <td><h6>{{profile.elevatorID}}</h6></td>
+            <td><h6>{{profile.description}}</h6></td>
+            <td><button id="deleteUser" class="btn btn-danger btn-xs" >Delete User</button></td>
+
+        </tr>
     {{/each}}
     </table>
 </template>

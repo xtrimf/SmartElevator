@@ -5,11 +5,13 @@ if (Meteor.isClient) {
             var user = $('[name=user]').val();
             var password = $('[name=password]').val();
             var ElevatorID = $('[name=ElevatorID]').val();
+            var Description = $('[name=Desc]').val();
             Accounts.createUser({
                 username: user,
                 password: password,
                 profile: {
-                    elevatorID: ElevatorID
+                    elevatorID: ElevatorID,
+                    description: Description
                 }
             });
             console.log('Im in2');
