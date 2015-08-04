@@ -1,36 +1,27 @@
 if (Meteor.isClient) {
-
     Template.register.events({
-        'submit': function(event){
-            console.log('Im in');
+        'submit': function (event) {
             event.preventDefault();
             var user = $('[name=user]').val();
             var password = $('[name=password]').val();
-            var ElevatorID = $('[ElevatorID=ElevatorID]').val();
+            var ElevatorID = $('[name=ElevatorID]').val();
             Accounts.createUser({
-                user: user,
+                username: user,
                 password: password,
-                elevatorID: ElevatorID
+                profile: {
+                    elevatorID: ElevatorID
+                }
             });
+            console.log('Im in2');
         }
     });
 
-    // counter starts at 0
-    Session.setDefault('counter', 0);
-
-    Template.hello.helpers({
-        counter: function () {
-            return Session.get('counter');
+    Template.userList.helpers({
+        users: function() {
+            return Meteor.users.find();
         }
     });
 
-    Template.hello.events({
-        'click button': function () {
-            // increment the counter when button is clicked
-            Session.set('counter', Session.get('counter') + 1);
-            console.log('Working!')
-        }
-    });
 }
 
 if (Meteor.isServer) {
