@@ -10,3 +10,6 @@ insecure
 accounts-base
 twbs:bootstrap
 accounts-password
+altapp:aes
+accounts-ui
+iron:router
