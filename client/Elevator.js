@@ -9,7 +9,9 @@ Template.elevatorPost.events({
             title: $(e.target).find('[name=title]').val()
         };
 
-        post._id = Elevators.update(this._id,post);
+        //Meteor.call('updateElevator',this._id,post);
+        post._id = Meteor.call('updateElevator',this._id,post);
+
         if (post._id=1){
             swal("", "", "success");}
         else { swal("שגיאה", post._id.toString(), "error");}

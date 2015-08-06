@@ -1,6 +1,14 @@
-Meteor.publish('Admins', function() {
-    return Meteor.Admins.find();
+Meteor.publish("userList", function () {
+    return Meteor.users.find();
 });
+
+//Meteor.publish("Elevators", function (userID) {
+//    return Elevators.find();
+//});
+
+//Meteor.publish('Admins', function() {
+//    return Meteor.Admins.find();
+//});
 
 Meteor.methods({
 
@@ -14,23 +22,22 @@ Meteor.methods({
             }
         ).toString();
 
+        //add to manage userlist from admin
+        allUsers.insert({
+            username: user.username,
+            elevatorID: user.profile.elevatorID,
+            description: user.profile.description
+             });
         // add the info to Elevators
         e_id = Elevators.findOne({elevatorID: user.profile.elevatorID}); // get the Elevator doc if it exists
         if(e_id){ e_id2 = e_id._id} else {e_id2 = null}; // if exist, take the selector id, else null
         Elevators.upsert(e_id2, {userID: u_id, elevatorID: user.profile.elevatorID});
 
+    },
+
+    updateElevator: function (id,post) {
+        return Elevators.update(id,post);
     }
-
-    //getUserID: function() {
-    //    Accounts.onCreateUser(function(options, user) {
-    //        console.log('User Created! new user ID is '+ user._id);
-    //        console.log(user.profile)
-    //        return user
-    //    });
-    //
-    //}
-
-
 });
 
 

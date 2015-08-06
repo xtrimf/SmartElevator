@@ -1,5 +1,12 @@
-if (Meteor.isClient) {
-  Template.adminPage.events({
+//console.log(userList);
+//Meteor.users.allow({
+//    insert: function(userId, doc) {
+//        // only allow posting if you are logged in
+//        return !! userId;
+//    }
+//});
+
+Template.adminPage.events({
 
     // create new user function
     'submit': function (event) {
@@ -22,7 +29,8 @@ if (Meteor.isClient) {
           Meteor.call('createNewUser', user, function(error, id) {
               if (error) {
                   // display the error to the user
-                  console.log(error);
+                  //console.log(error);
+                  swal("Oops...", error, "error");
               } else {
                   //Router.go('awesome');
               }
@@ -34,19 +42,19 @@ if (Meteor.isClient) {
     }
   });
 
+//Template.adminPage.onCreated({
+//    notAdmin: function () {
+//        console.log('YES');
+//       //if(!Meteor.call('userIsAdmin')){
+//       //     //Router.go('login');
+//    //    }
+//    }
+//});
+
   Template.adminPage.helpers({
-    users: function() {
-      return Meteor.users.find();
+    allusers: function() {
+      return allUsers.find();
     }
   });
 
-}
 
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
-
-
-
-}

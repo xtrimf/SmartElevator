@@ -13,13 +13,15 @@
 
     <table border="1" align="center">
         <tr><th>User</th><th>ElevatorID</th><th>Description</th><th></th><th></th></tr>
-        {{#each users}}
+        {{#each allusers}}
             <tr><td id="user"><h6>{{username}}</h6></td>
-                <td><h6>{{profile.elevatorID}}</h6></td>
-                <td><h6>{{profile.description}}</h6></td>
+                <td><h6>{{elevatorID}}</h6></td>
+                <td><h6>{{description}}</h6></td>
                 <td><button id="deleteUser" class="btn btn-danger btn-xs" >Delete User</button></td>
                 <td><button id="preview" class="btn btn-success btn-xs" >Preview</button></td>
             </tr>
         {{/each}}
     </table>
 </template>
+
+

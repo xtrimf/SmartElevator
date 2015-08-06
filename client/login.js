@@ -8,9 +8,16 @@ Template.login.events({
             if (err) {
                 swal("Oops...", "incorrect user/password. Please try again", "error");
             } else {
-
-                e_id = Elevators.findOne({userID: Meteor.userId()}); // get the Elevator doc of this user
-                Router.go('elevatorPost',{_id: e_id._id});
+                 //console.log('isAdmin= '+Meteor.user().profile.isAdmin);
+                if(Meteor.user().profile.isAdmin==1){
+                    Router.go('adminPage');
+                }else {
+                    // subscribing through the collection.js to a specific elevator
+                    console.log(Meteor.userId());
+                    e_id = Elevators.findOne({userID: Meteor.userId().toString()}); // get the Elevator doc of this user
+                    console.log(Elevators.findOne());
+                    Router.go('elevatorPost', {_id: e_id._id});
+                }
             };
         })
     }
