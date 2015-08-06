@@ -4,40 +4,39 @@ if (Meteor.isClient) {
     // create new user function
     'submit': function (event) {
       event.preventDefault();
-      var user = $('[name=user]').val();
+      var username = $('[name=user]').val();
       var password = $('[name=password]').val();
       var ElevatorID = $('[name=ElevatorID]').val();
       var Description = $('[name=Desc]').val();
 
       // check that all fields are valid and then create
-      if (ElevatorID && Description) {
-        Accounts.createUser({username: user,password: password},function(err) {
-              if (err) {
-                console.log(err);
-              }
+      if (username && password && ElevatorID && Description) {
+        var user = {
+              username: username,
+              password: password,
+              profile: {
+                elevatorID: ElevatorID,
+                description: Description}
             }
-        );
-         // a = Meteor.call('getUserID');
-         // console.log(a);
-        //Meteor.call('getUserID',function(err, response) {
-        //  Session.set('newUserID', response);
-        //    console.log(response)
-        //});
 
-        // add the info to Elevators
-        e_id = Elevators.findOne({username: user}); // get the Elevator doc
-        if(e_id){ e_id2 = e_id._id} else {e_id2 = null}; // if exist, take the selector id, else null
-        console.log(e_id2+' - '+Meteor.userId() );
-        Elevators.upsert(e_id2, {userID: Meteor.userId(), username: user, elevatorID: ElevatorID, description: Description});
+          Meteor.call('createNewUser', user, function(error, id) {
+              if (error) {
+                  // display the error to the user
+                  console.log(error);
+              } else {
+                  //Router.go('awesome');
+              }
+          });
 
-
-      };
+      } else {  // not all field are filled
+          swal("Oops...", "Please fill in ALL the fields!", "error");
+      }
     }
   });
 
   Template.adminPage.helpers({
     users: function() {
-      return Elevators.find();
+      return Meteor.users.find();
     }
   });
 
