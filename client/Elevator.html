@@ -1,0 +1,18 @@
+<template name="elevatorPost">
+    <form class="main form page">
+        <div class="form-group" dir="rtl">
+            <label class="control-label" for="url">כותרת</label>
+            <div class="controls">
+                <input name="title" id="title" type="text" value="{{title}}" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group" dir="rtl">
+            <label class="control-label" for="content">תוכן הודעה</label>
+            <div class="controls">
+                <textarea name="content" id="content" type="text" value="{{content}}" rows="5" class="form-control"></textarea>
+            </div>
+        </div>
+        <input type="submit" value="שמור" class="btn btn-primary"/>
+        <input type="submit" value="מחק" class="btn btn-error"/>
+    </form>
+</template>

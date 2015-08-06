@@ -1,18 +1,4 @@
-<head>
-    <title>SmartElevator</title>
-</head>
-
-<body>
-<h1 align="center">Welcome to SmartElevator</h1>
-
-{{> register}}
-<br><hr>
-{{> userList}}
-
-</body>
-
-
-<template name="register">
+<template name="adminPage">
     <form class="registerForm" >
         <table align="center">
             <tr><td>User: </td><td><input type="input" name="user"></td></tr>
@@ -22,18 +8,17 @@
             <tr><td colspan="2" align="center"><input type="submit" value="Create User"></td></tr>
         </table>
     </form>
-</template>
 
-<template name="userList">
+
+
     <table border="1" align="center">
         <tr><th>User</th><th>ElevatorID</th><th>Description</th><th></th></tr>
-    {{#each users}}
-        <tr><td id="user"><h6>{{username}}</h6></td>
-            <td><h6>{{profile.elevatorID}}</h6></td>
-            <td><h6>{{profile.description}}</h6></td>
-            <td><button id="deleteUser" class="btn btn-danger btn-xs" >Delete User</button></td>
-
-        </tr>
-    {{/each}}
+        {{#each users}}
+            <tr><td id="user"><h6>{{username}}</h6></td>
+                <td><h6>{{elevatorID}}</h6></td>
+                <td><h6>{{description}}</h6></td>
+                <td><button id="deleteUser" class="btn btn-danger btn-xs" >Delete User</button></td>
+            </tr>
+        {{/each}}
     </table>
 </template>
