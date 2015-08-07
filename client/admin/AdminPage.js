@@ -24,7 +24,7 @@ Template.adminPage.events({
               profile: {
                 elevatorID: ElevatorID,
                 description: Description}
-            }
+            };
 
           Meteor.call('createNewUser', user, function(error, id) {
               if (error) {
