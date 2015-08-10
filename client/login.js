@@ -19,6 +19,10 @@ Template.login.events({
                     Router.go('elevatorPost', {_id: e_id._id});
                 }
             };
-        })
+        });
+
+
+
+
     }
 });

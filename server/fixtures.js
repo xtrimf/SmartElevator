@@ -5,4 +5,6 @@ if (Meteor.users.find().count() === 0) {
         profile: {isAdmin:1}
     });
 
+
+
 }

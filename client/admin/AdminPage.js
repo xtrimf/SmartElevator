@@ -42,18 +42,13 @@ Template.adminPage.events({
     }
   });
 
-//Template.adminPage.onCreated({
-//    notAdmin: function () {
-//        console.log('YES');
-//       //if(!Meteor.call('userIsAdmin')){
-//       //     //Router.go('login');
-//    //    }
-//    }
-//});
-
   Template.adminPage.helpers({
     allusers: function() {
-      return allUsers.find();
+        if (Meteor.user().profile.isAdmin != 1) {
+            Router.go('login');
+        } else {
+            return allUsers.find();
+        }
     }
   });
 

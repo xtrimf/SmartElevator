@@ -1,5 +1,12 @@
+
 Meteor.publish("userList", function () {
     return Meteor.users.find();
+});
+
+Elevators.allow({
+    update: function() {
+        return true;
+    }
 });
 
 //Meteor.publish("Elevators", function (userID) {
@@ -12,7 +19,8 @@ Meteor.publish("userList", function () {
 
 Meteor.methods({
 
-    createNewUser: function(user){
+       createNewUser: function(user){
+
         var u_id = Accounts.createUser({
                 username: user.username,
                 password: user.password,
@@ -35,11 +43,55 @@ Meteor.methods({
 
     },
 
-    updateElevator: function (id,post) {
-        return Elevators.update(id,post);
+    //updateElevator: function (id,post) {
+    //    try {
+    //        console.log('Update started...');
+    //        Elevators.update(id1, post,function(err) {
+    //            if (err) {throw new Meteor.Error('error',err.message);}
+    //
+    //        });
+    //        console.log('Update successful');
+    //        return 1
+    //    } catch(e) {
+    //        console.log('error: '+e);
+    //        return e.toString();
+    //    }
+    //},
+
+//    ftpUpload: function () {
+//        var ftps = new FTPS({
+//            host: 'ecbiz102.inmotionhosting.com', // required
+//            username: 'consul@tcmherbalist.com', // required
+//            password: 'admin@consul', // required
+//            protocol: 'ftp' // optional, values : 'ftp', 'sftp', 'ftps',... default is 'ftp'
+//            // proftp.tocol is added on beginning of host, ex : sftp://domain.com in this case
+//            //port: 21 // optional
+//            // port is added to the end of the host, ex: sftp://domain.com:22 in this case
+//        });
+//// Do some amazing things
+//        //ftp.cd('myDir').addFile(__dirname + '/test.txt').exec(console.log);
+//        ftps.get('people.txt');
+//    },
+
+
+    httPost: function (post) {
+        //server = 'http://212.179.112.63/apps/consul/index.php';
+        server ='http://ecbiz102.inmotionhosting.com/~tcmher5/consul/index.php';
+        try {
+            var result = HTTP.post(server,
+                {
+                    params: {eID: post.elevatorID ,
+                             title: post.title ,
+                             content: post.content
+                            }
+                }
+            );
+            console.log(result.statusCode);
+            return result.statusCode;
+        } catch(e) {
+            return 'Cannot post to server...Please try again in a few seconds ('+e+')';
+        }
     }
 });
-
-
 
 //Meteor.users.remove(' the _id of the user ');

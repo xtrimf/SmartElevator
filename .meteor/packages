@@ -16,3 +16,10 @@ kevohagan:sweetalert
 cfs:standard-packages
 cfs:filesystem
 meteorhacks:kadira
+meteorhacks:npm
+
+
+npm-container
+http
+aldeed:http
+coffeescript

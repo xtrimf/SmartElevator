@@ -9,12 +9,38 @@ Template.elevatorPost.events({
             title: $(e.target).find('[name=title]').val()
         };
 
-        //Meteor.call('updateElevator',this._id,post);
-        post._id = Meteor.call('updateElevator',this._id,post);
+        // update the DB
+        Elevators.update(this._id, { $set: post },function(err) {
+            if (err) {
+                swal("שגיאה", err, "error");
+                throw ''; // exit script
+            }
+        });
 
-        if (post._id=1){
-            swal("", "", "success");}
-        else { swal("שגיאה", post._id.toString(), "error");}
-        //Router.go('postPage', post);
+
+        // send POST to server
+        Meteor.call('httPost',post,function(err, response) {
+            Session.set('serverResponse', response);
+            //swal("שגיאה", response, "error");
+            if (err) {
+                swal("שגיאה", err + response, "error");
+            } else {
+                if (Session.get('serverResponse') == 200) {
+                    swal("", "", "success");
+                }
+            }
+        })
+        //    Session.set('serverResponse', response)});
+        //
+        //console.log(Session.get('serverResponse'));
+        //
+        //// show final message
+        //if (Session.get('serverResponse') == 200){
+        //    swal("", "", "success");}
+        //else {
+        //    swal("שגיאה", Session.get('serverResponse'), "error");
+        //    }
+
     }
 });
+
