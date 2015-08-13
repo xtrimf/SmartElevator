@@ -43,6 +43,23 @@ Meteor.methods({
 
     },
 
+    deleteUser: function (username) {
+
+        // get the userID
+        user = Meteor.users.findOne({username: username})._id;
+
+        try {
+            // delete this user
+            Meteor.users.remove(user);
+            // delete it from allUsers
+            console.log(allUsers.remove({username: username}));
+            // delete associated elevators
+            console.log(Elevators.remove({userID: user}));
+        } catch(e){
+            return e
+        }
+        },
+
     //updateElevator: function (id,post) {
     //    try {
     //        console.log('Update started...');
@@ -75,8 +92,8 @@ Meteor.methods({
 
 
     httPost: function (post) {
-        //server = 'http://212.179.112.63/apps/consul/index.php';
-        server ='http://ecbiz102.inmotionhosting.com/~tcmher5/consul/index.php';
+        server = 'http://212.179.112.63/apps/consul/data/index.php';
+        //server ='http://ecbiz102.inmotionhosting.com/~tcmher5/consul/index.php';
         try {
             var result = HTTP.post(server,
                 {

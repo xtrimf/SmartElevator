@@ -39,6 +39,25 @@ Template.adminPage.events({
       } else {  // not all field are filled
           swal("Oops...", "Please fill in ALL the fields!", "error");
       }
+    },
+
+    'click .delete': function(e) {
+        username= this.username;
+        swal({   title: "Are you sure?",
+            text: "You will not be able to recover this user!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false }, function(){
+            result = Meteor.call('deleteUser',username);
+            if(len(result)>0) {
+                swal("Error", result, "Error");
+
+            } else {
+                swal("Deleted!", "", "success");
+            }
+        });
     }
   });
 
