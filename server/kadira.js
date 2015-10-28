@@ -1,1 +1,1 @@
-Kadira.connect('JS9eYRPqjw3PirsjM', 'fc26405c-ad53-462b-83e2-55b29b02109d');
+//Kadira.connect('JS9eYRPqjw3PirsjM', 'fc26405c-ad53-462b-83emeteor update2-55b29b02109d');
