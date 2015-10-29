@@ -50,10 +50,9 @@ Template.adminPage.events({
             confirmButtonColor: "#DD6B55",
             confirmButtonText: "Yes, delete it!",
             closeOnConfirm: false }, function(){
-            result = Meteor.call('deleteUser',username);
-            if(len(result)>0) {
-                swal("Error", result, "Error");
-
+            var result = Meteor.call('deleteUser',username);
+            if(result) {
+                swal("Error", result, "error");
             } else {
                 swal("Deleted!", "", "success");
             }

@@ -52,12 +52,15 @@ Meteor.methods({
             // delete this user
             Meteor.users.remove(user);
             // delete it from allUsers
-            console.log(allUsers.remove({username: username}));
+            allUsers.remove({username: username});
             // delete associated elevators
-            console.log(Elevators.remove({userID: user}));
+            Elevators.remove({userID: user});
         } catch(e){
+            console.log(e)
             return e
         }
+            console.log('user '+username+' deleted');
+            return 'user '+username+' deleted'
         },
 
     //updateElevator: function (id,post) {

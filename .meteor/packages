@@ -4,7 +4,6 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-platform
 accounts-base
 twbs:bootstrap
 accounts-password
@@ -15,7 +14,6 @@ underscore
 kevohagan:sweetalert
 cfs:standard-packages
 cfs:filesystem
-meteorhacks:kadira
 meteorhacks:npm
 
 
@@ -23,3 +21,17 @@ npm-container
 http
 aldeed:http
 coffeescript
+standard-minifiers
+meteor-base
+mobile-experience
+mongo
+blaze-html-templates
+session
+jquery
+tracker
+logging
+reload
+random
+ejson
+spacebars
+check
