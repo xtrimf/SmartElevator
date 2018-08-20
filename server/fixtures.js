@@ -1,7 +1,7 @@
 if (Meteor.users.find().count() === 0) {
     Accounts.createUser({
-        username: 'felix',
-        password: 'felix@consul',
+        username: 'admin',
+        password: 'password',
         profile: {isAdmin:1}
     });
 
